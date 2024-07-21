@@ -29,6 +29,8 @@ jobs:
         source venv/bin/activate
         pip install -r requirements.txt
         pip install pyinstaller
+        echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+        echo "PATH=$VIRTUAL_ENV/bin:$PATH" >> $GITHUB_ENV
 
     - name: Install dependencies (Windows)
       if: runner.os == 'Windows'
@@ -38,6 +40,8 @@ jobs:
         .\venv\Scripts\Activate.ps1
         pip install -r requirements.txt
         pip install pyinstaller
+        echo "VIRTUAL_ENV=$VIRTUAL_ENV" >> $GITHUB_ENV
+        echo "PATH=$VIRTUAL_ENV/Scripts:$PATH" >> $GITHUB_ENV
 
     - name: Build executable (Linux)
       if: runner.os != 'Windows'
