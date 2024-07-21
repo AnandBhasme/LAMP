@@ -40,8 +40,8 @@ jobs:
         .\venv\Scripts\Activate.ps1
         pip install -r requirements.txt
         pip install pyinstaller
-        echo "VIRTUAL_ENV=$(pwd)\venv" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-        echo "PATH=$(pwd)\venv\Scripts;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        echo "VIRTUAL_ENV=$(pwd)\\venv" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        echo "PATH=$(pwd)\\venv\\Scripts;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
       env:
         pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
 
