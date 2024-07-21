@@ -20,7 +20,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.11'
+        python-version: '3.x'
 
     - name: Install dependencies (Linux)
       if: runner.os != 'Windows'
@@ -37,11 +37,17 @@ jobs:
       shell: pwsh
       run: |
         python -m venv venv
+        Write-Host "Created virtual environment."
         .\venv\Scripts\Activate.ps1
+        Write-Host "Activated virtual environment."
         pip install -r requirements.txt
+        Write-Host "Installed requirements."
         pip install pyinstaller
+        Write-Host "Installed pyinstaller."
         echo "VIRTUAL_ENV=$(pwd)\\venv" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        echo "Updated VIRTUAL_ENV."
         echo "PATH=$(pwd)\\venv\\Scripts;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+        echo "Updated PATH."
       env:
         pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
 
