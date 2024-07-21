@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Library Access Management Protocol</title>
+    <link rel="stylesheet" href="resources/web/styles.css" />
+  </head>
+  <body>
+    <div class="black_overlay"></div>
+    <audio id="audioPlayer" preload="auto"></audio>
+    <button
+      id="muteButton"
+      style="
+        background: url('resources/mute.png') no-repeat;
+        z-index: 1000;
+        height: 100%;
+        width: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      "
+    ></button>
+    <div class="back" style="background-color: rgb(0, 0, 0)"></div>
+    <div class="foreground">
+      <div class="newbody">
+        <div class="date-box">
+          <div class="date-line">Date</div>
+          <div id="currentDate"></div>
+        </div>
+        <div class="header"><u>WELCOME TO THE LIBRARY</u></div>
+        <div class="panels">
+          <div class="left-panel">
+            <div class="video-feed">
+              <img
+                src="{{ url_for('video_feed') }}"
+                alt="Video Feed"
+                style="width: 100%"
+              />
+            </div>
+            <div>
+              <p style="color: rgb(255, 255, 255); font-size: 20px">
+                Last Scanned ID: <span id="lastScanned"></span>
+                <audio id="audioPlayer"></audio>
+              </p>
+            </div>
+          </div>
+          <div class="right-panel">
+            <h1><span id="Greeting"></span> <span id="name"></span></h1>
+            <div>
+              <div
+                class="Action"
+                style="
+                  -webkit-text-stroke-width: 0.5px;
+                  -webkit-text-stroke-color: rgb(255, 255, 255);
+                "
+              >
+                <span id="lastAction"></span>
+              </div>
+
+              <span id="time" style="color: #d7d7d7"></span>
+            </div>
+          </div>
+        </div>
+        <div class="student-count">
+          Student Count: <span id="studentCount"></span>
+        </div>
+      </div>
+    </div>
+    <div class="untitled">
+      <div class="untitled__slides">
+        <div class="untitled__slide" style="animation-delay: 0s">
+          <div
+            class="untitled__slideBg"
+            style="background-image: url('resources/library_photos/pic1.jpg')"
+          ></div>
+          <div class="untitled__slideContent"></div>
+          <div class="untitled__shutters"></div>
+        </div>
+        <div class="untitled__slide" style="animation-delay: 5s">
+          <div
+            class="untitled__slideBg"
+            style="background-image: url('resources/library_photos/pic2.jpg')"
+          ></div>
+          <div class="untitled__slideContent"></div>
+          <div class="untitled__shutters"></div>
+        </div>
+        <div class="untitled__slide" style="animation-delay: 10s">
+          <div
+            class="untitled__slideBg"
+            style="background-image: url('resources/library_photos/pic3.jpg')"
+          ></div>
+          <div class="untitled__slideContent"></div>
+          <div class="untitled__shutters"></div>
+        </div>
+        <div class="untitled__slide" style="animation-delay: 15s">
+          <div
+            class="untitled__slideBg"
+            style="background-image: url('resources/library_photos/pic4.jpg')"
+          ></div>
+          <div class="untitled__slideContent"></div>
+          <div class="untitled__shutters"></div>
+        </div>
+      </div>
+    </div>
+    <script src="resources/web/scripts.js"></script>
+  </body>
+</html>
