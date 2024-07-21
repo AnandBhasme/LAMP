@@ -63,6 +63,15 @@ jobs:
       env:
         pythonLocation: ${{ runner.tool_cache }}/windows/Python/3.x.x64
 
+    - name: Upload log files
+      if: runner.os == 'Windows'
+      uses: actions/upload-artifact@v2
+      with:
+        name: log-files
+        path: |
+          pip_output.log
+          pip_output_pyinstaller.log
+
     - name: Build executable (Linux)
       if: runner.os != 'Windows'
       run: |
@@ -76,7 +85,7 @@ jobs:
         .\venv\Scripts\Activate.ps1
         pyinstaller --onefile app.py
 
-    - name: Upload artifact
+    - name: Upload executable artifact
       uses: actions/upload-artifact@v2
       with:
         name: executable-${{ matrix.os }}
