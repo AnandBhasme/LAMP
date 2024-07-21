@@ -44,7 +44,8 @@ jobs:
         if ($?) {
           Write-Host "Installed requirements successfully."
         } else {
-          Write-Error "Failed to install requirements."
+          Write-Host "Failed to install requirements. See error below:"
+          pip install -r requirements.txt -v
           exit 1
         }
         pip install pyinstaller
