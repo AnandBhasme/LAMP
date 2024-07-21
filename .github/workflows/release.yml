@@ -25,7 +25,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv
-        if [ $RUNNER_OS == 'Windows' ]; then
+        if ( $RUNNER_OS == 'Windows' ); then
           venv\Scripts\activate
         else
           source venv/bin/activate
