@@ -33,3 +33,6 @@
    python app.py
    ```
 
+## Download Executables
+
+You can download the latest executables for Windows and Linux from the [Releases](https://github.com/hyped1xgeek/lamp/releases).
