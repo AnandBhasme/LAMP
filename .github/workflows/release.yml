@@ -20,7 +20,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: '3.x'
+        python-version: '3.x'  # Use the latest Python 3.x version
 
     - name: Install dependencies (Linux)
       if: runner.os != 'Windows'
@@ -40,19 +40,20 @@ jobs:
         Write-Host "Created virtual environment."
         .\venv\Scripts\Activate.ps1
         Write-Host "Activated virtual environment."
-        pip install -r requirements.txt
+        pip install -r requirements.txt 2>&1 | Tee-Object -FilePath pip_output.log
         if ($?) {
           Write-Host "Installed requirements successfully."
         } else {
           Write-Host "Failed to install requirements. See error below:"
-          pip install -r requirements.txt -v
+          cat pip_output.log
           exit 1
         }
-        pip install pyinstaller
+        pip install pyinstaller 2>&1 | Tee-Object -FilePath pip_output_pyinstaller.log
         if ($?) {
           Write-Host "Installed pyinstaller successfully."
         } else {
-          Write-Error "Failed to install pyinstaller."
+          Write-Host "Failed to install pyinstaller. See error below:"
+          cat pip_output_pyinstaller.log
           exit 1
         }
         echo "VIRTUAL_ENV=$(pwd)\\venv" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
@@ -60,7 +61,7 @@ jobs:
         echo "PATH=$(pwd)\\venv\\Scripts;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
         Write-Host "Updated PATH."
       env:
-        pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
+        pythonLocation: ${{ runner.tool_cache }}/windows/Python/3.x.x64
 
     - name: Build executable (Linux)
       if: runner.os != 'Windows'
