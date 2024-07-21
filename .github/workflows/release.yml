@@ -41,20 +41,20 @@ jobs:
         Write-Host "Created virtual environment."
         .\venv\Scripts\Activate.ps1
         Write-Host "Activated virtual environment."
-        pip install -r requirements.txt 2>&1 | Tee-Object -FilePath $(pwd)\pip_output.log
-        if ($?) {
+        pip install -r requirements.txt 2>&1 | Tee-Object -FilePath "$(pwd)\pip_output.log"
+        if ($LASTEXITCODE -eq 0) {
           Write-Host "Installed requirements successfully."
         } else {
           Write-Host "Failed to install requirements. See error below:"
-          Get-Content $(pwd)\pip_output.log
+          Get-Content "$(pwd)\pip_output.log"
           exit 1
         }
-        pip install pyinstaller 2>&1 | Tee-Object -FilePath $(pwd)\pip_output_pyinstaller.log
-        if ($?) {
+        pip install pyinstaller 2>&1 | Tee-Object -FilePath "$(pwd)\pip_output_pyinstaller.log"
+        if ($LASTEXITCODE -eq 0) {
           Write-Host "Installed pyinstaller successfully."
         } else {
           Write-Host "Failed to install pyinstaller. See error below:"
-          Get-Content $(pwd)\pip_output_pyinstaller.log
+          Get-Content "$(pwd)\pip_output_pyinstaller.log"
           exit 1
         }
         echo "VIRTUAL_ENV=$(pwd)\\venv" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
