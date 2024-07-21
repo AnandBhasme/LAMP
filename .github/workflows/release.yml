@@ -41,13 +41,23 @@ jobs:
         .\venv\Scripts\Activate.ps1
         Write-Host "Activated virtual environment."
         pip install -r requirements.txt
-        Write-Host "Installed requirements."
+        if ($?) {
+          Write-Host "Installed requirements successfully."
+        } else {
+          Write-Error "Failed to install requirements."
+          exit 1
+        }
         pip install pyinstaller
-        Write-Host "Installed pyinstaller."
+        if ($?) {
+          Write-Host "Installed pyinstaller successfully."
+        } else {
+          Write-Error "Failed to install pyinstaller."
+          exit 1
+        }
         echo "VIRTUAL_ENV=$(pwd)\\venv" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-        echo "Updated VIRTUAL_ENV."
+        Write-Host "Updated VIRTUAL_ENV."
         echo "PATH=$(pwd)\\venv\\Scripts;$env:PATH" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
-        echo "Updated PATH."
+        Write-Host "Updated PATH."
       env:
         pythonLocation: C:\hostedtoolcache\windows\Python\3.11.9\x64
 
