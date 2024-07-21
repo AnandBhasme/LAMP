@@ -25,13 +25,8 @@ jobs:
     - name: Install dependencies
       run: |
         python -m venv venv
-<<<<<<<<< Temporary merge branch 1
-        if ( $RUNNER_OS == 'Windows' ); then
-          venv\Scripts\activate
-=========
         if [[ "$RUNNER_OS" == "Windows" ]]; then
           .\venv\Scripts\activate
->>>>>>>>> Temporary merge branch 2
         else
           source venv/bin/activate
         fi
