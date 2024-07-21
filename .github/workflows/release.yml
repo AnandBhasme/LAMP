@@ -22,14 +22,19 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Install dependencies
+    - name: Install dependencies (Linux)
+      if: runner.os != 'Windows'
       run: |
         python -m venv venv
-        if [[ "$RUNNER_OS" == "Windows" ]]; then
-          .\venv\Scripts\activate
-        else
-          source venv/bin/activate
-        fi
+        source venv/bin/activate
+        pip install -r requirements.txt
+        pip install pyinstaller
+
+    - name: Install dependencies (Windows)
+      if: runner.os == 'Windows'
+      run: |
+        python -m venv venv
+        .\venv\Scripts\activate
         pip install -r requirements.txt
         pip install pyinstaller
 
