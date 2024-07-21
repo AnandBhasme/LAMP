@@ -4,7 +4,7 @@
 
 1. **Clone the repository:**
    ```sh
-   git clone https://github.com/hyped1xgeek/lamp.git
+   git clone https://github.com/AnandBhasme/LAMP.git
    cd lamp
    ```
 
