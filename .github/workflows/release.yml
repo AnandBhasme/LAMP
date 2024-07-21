@@ -32,15 +32,24 @@ jobs:
 
     - name: Install dependencies (Windows)
       if: runner.os == 'Windows'
+      shell: pwsh
       run: |
         python -m venv venv
-        .\venv\Scripts\activate
+        .\venv\Scripts\Activate.ps1
         pip install -r requirements.txt
         pip install pyinstaller
 
-    - name: Build executable
+    - name: Build executable (Linux)
+      if: runner.os != 'Windows'
       run: |
         source venv/bin/activate
+        pyinstaller --onefile app.py
+
+    - name: Build executable (Windows)
+      if: runner.os == 'Windows'
+      shell: pwsh
+      run: |
+        .\venv\Scripts\Activate.ps1
         pyinstaller --onefile app.py
 
     - name: Upload artifact
