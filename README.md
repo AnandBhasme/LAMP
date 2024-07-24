@@ -1,4 +1,4 @@
-# Library Access Management Protocol
+# LAMP: Library Access Management Protocol
 
 ## Setup Instructions
 
